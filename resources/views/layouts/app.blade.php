@@ -17,7 +17,7 @@
 
             <nav class="flex gap-2 items-center">
                 <a class="font-bold uppercase text-gray-600 text-sm" href="#">Login</a>
-                <a class="font-bold uppercase text-gray-600 text-sm" href="#">Registro</a>
+                <a class="font-bold uppercase text-gray-600 text-sm" href="/registro">Registro</a>
 
             </nav>
         </div>
@@ -31,7 +31,7 @@
         @yield('contenido')
     </main>
 
-    <footer class="text-center p-5 text-gray-500 font-bold uppercase">
+    <footer class="mt-10 text-center p-5 text-gray-500 font-bold uppercase">
         Devstagram &copy; {{ date('Y') }}
     </footer>
 </body>

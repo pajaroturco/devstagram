@@ -16,3 +16,5 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('principal');
 });
+
+Route::get('/registro', [App\Http\Controllers\auth\AuthController::class, 'registro']);
