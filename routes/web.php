@@ -15,6 +15,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('principal');
-});
+})->name('principal');
 
-Route::get('/registro', [App\Http\Controllers\auth\AuthController::class, 'registro']);
+Route::get('/registro', [App\Http\Controllers\auth\AuthController::class, 'index'])->name('registro.index');
+Route::post('/registro', [App\Http\Controllers\auth\AuthController::class, 'store'])->name('registro.store');
+
+Route::get('/login', [App\Http\Controllers\auth\AuthController::class, 'login'])->name('login.index');
+Route::post('/login', [App\Http\Controllers\auth\AuthController::class, 'loginStore'])->name('login.store');
+
