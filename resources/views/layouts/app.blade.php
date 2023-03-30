@@ -15,13 +15,23 @@
                 <a href="{{route('principal')}}"> Devstagram </a>
             </h1>
 
-            <nav class="flex gap-2 items-center">
-                <a class="font-bold uppercase text-gray-600 text-sm" href="#">Login</a>
-                <a class="font-bold uppercase text-gray-600 text-sm" href="{{route('registro.index')}}">Registro</a>
+            @if(auth()->user())
+                <nav class="flex gap-2 items-center">
+                    <a class="font-bold uppercase text-gray-600 text-sm" href="#">Perfil</a>
+                    <form action="{{route('logout')}}" method="POST">
+                        @csrf
+                        <button type="submit" class="font-bold uppercase text-gray-600 text-sm">Cerrar Sesión</button>
+                    </form>
+                </nav>
+            @else
+                <nav class="flex gap-2 items-center">
+                    <a class="font-bold uppercase text-gray-600 text-sm" href="{{route('login')}}">Login</a>
+                    <a class="font-bold uppercase text-gray-600 text-sm" href="{{route('registro.index')}}">Registro</a>
 
-            </nav>
+                </nav>
+            @endif
         </div>
-        
+
     </header>
 
     <main class="container mx-auto mt-10">

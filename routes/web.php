@@ -20,6 +20,8 @@ Route::get('/', function () {
 Route::get('/registro', [App\Http\Controllers\auth\AuthController::class, 'index'])->name('registro.index');
 Route::post('/registro', [App\Http\Controllers\auth\AuthController::class, 'store'])->name('registro.store');
 
-Route::get('/login', [App\Http\Controllers\auth\AuthController::class, 'login'])->name('login.index');
+Route::get('/login', [App\Http\Controllers\auth\AuthController::class, 'login'])->name('login');
 Route::post('/login', [App\Http\Controllers\auth\AuthController::class, 'loginStore'])->name('login.store');
+Route::post('/logout', [App\Http\Controllers\auth\AuthController::class, 'logout'])->name('logout');
 
+Route::get('/{user:username}', [App\Http\Controllers\PostController::class, 'index'])->name('posts.index');

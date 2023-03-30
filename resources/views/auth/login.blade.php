@@ -13,15 +13,21 @@
         <form action="{{route('login.store')}}" method="POST">
             @csrf
 
+            @if (session('mensaje'))
+            <p class="text-red-500 text-xs mt-2">
+                {{session('mensaje')}}
+            </p>
+            @endif
+
             <div class="mb-5">
                 <label for="email" class="md-2 block uppercase text-gray-500 font-bold">
                     Email
                 </label>
-                <input 
-                type="email" 
-                name="email" 
-                id="email" 
-                placeholder="Tu email" 
+                <input
+                type="email"
+                name="email"
+                id="email"
+                placeholder="Tu email"
                 class="border p-3 w-full rounded-lg @error('email') border-red-500 @enderror"
                 value="{{old('email')}}"
                 >
@@ -36,11 +42,11 @@
                 <label for="password" class="md-2 block uppercase text-gray-500 font-bold">
                     Password
                 </label>
-                <input 
-                type="password" 
-                name="password" 
-                id="password" 
-                placeholder="Tu password" 
+                <input
+                type="password"
+                name="password"
+                id="password"
+                placeholder="Tu password"
                 class="border p-3 w-full rounded-lg @error('password') border-red-500 @enderror"
                 >
                 @error('password')
@@ -50,8 +56,15 @@
                 @enderror
             </div>
 
-            <input type="submit" 
-            value="Registrarse" 
+            <div class="mb-5">
+                <input type="checkbox" name="remember" id="remember" class="mr-2">
+                <label for="remember" class="text-gray-500 text-sm">
+                    Recordarme
+                </label>
+            </div>
+
+            <input type="submit"
+            value="Registrarse"
             class="bg-sky-600 hover:bg-sky-700 transition-colors cursor-pointer uppercase font-bold w-full p-3 text-white rounded-lg">
         </form>
     </div>

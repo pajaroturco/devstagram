@@ -3,13 +3,14 @@
 namespace App\Http\Controllers\auth;
 
 use App\Models\User;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Console\View\Components\Alert;
-use Termwind\Components\Dd;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
@@ -21,6 +22,8 @@ class AuthController extends Controller
 
     public function store(Request $oRequest)
     {
+        $oRequest->merge(['username' => Str::slug($oRequest->username)]);
+
         $oValidator = Validator::make($oRequest->all(), [
             'nombre' => 'required|min:5',
             'username' => 'required|min:5|unique:users',
@@ -40,10 +43,7 @@ class AuthController extends Controller
             'password' => Hash::make($oRequest->password)
         ]);
 
-        if ($oUsuario) {
-            return redirect()->route('login.index')
-            ->withAlert('Usuario registrado correctamente');
-        }
+        return redirect()->route('posts.index');
     }
 
     public function login()
@@ -55,7 +55,7 @@ class AuthController extends Controller
 
         $oValidator = Validator::make($oRequest->all(), [
             'email' => 'required|email',
-            'password' => 'required|min:8'
+            'password' => 'required'
         ]);
 
         if ($oValidator->fails()) {
@@ -63,25 +63,16 @@ class AuthController extends Controller
             ->withInput();
         }
 
-        info($oRequest->email);
-        $oUsuario = User::where('email', $oRequest->email)->first();
-        dd($oUsuario);
-
-        if (!$oUsuario) {
-            Log::warning("usuario incorrecto");
-            return redirect()->back()->withErrors(['email' => 'Error al autenticar'])
+        if (!Auth::attempt(['email' => $oRequest->email, 'password' => $oRequest->password], $oRequest->remember)){
+            return redirect()->back()->with(['mensaje' => 'Error al autenticar'])
             ->withInput();
-            
-        } 
-
-        if (!Hash::check($oRequest->password, $oUsuario->password)) {
-            Log::warning("contraseña incorrecta");
-            return redirect()->back()->withErrors(['email' => 'Error al autenticar'])
-            ->withInput();
-            
         }
 
-        $oRequest->session()->put('usuario', $oUsuario);
-        return redirect()->route('principal');
+        return redirect()->route('posts.index');
+    }
+
+    public function logout(){
+        Auth::logout();
+        return redirect()->route('login');
     }
 }
