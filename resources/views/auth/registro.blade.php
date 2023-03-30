@@ -16,12 +16,12 @@
                     <label for="nombre" class="md-2 block uppercase text-gray-500 font-bold">
                         Nombre
                     </label>
-                    <input 
-                    type="text" 
-                    name="nombre" 
-                    id="name" 
-                    placeholder="Tu nombre" 
-                    class="border p-3 w-full rounded-lg @error('nombre') border-red-500 @enderror" 
+                    <input
+                    type="text"
+                    name="nombre"
+                    id="name"
+                    placeholder="Tu nombre"
+                    class="border p-3 w-full rounded-lg @error('nombre') border-red-500 @enderror"
                     value="{{old('nombre')}}"
                     >
                     @error('nombre')
@@ -34,11 +34,11 @@
                     <label for="username" class="md-2 block uppercase text-gray-500 font-bold">
                         Username
                     </label>
-                    <input 
-                    type="text" 
-                    name="username" 
-                    id="username" 
-                    placeholder="Tu username" 
+                    <input
+                    type="text"
+                    name="username"
+                    id="username"
+                    placeholder="Tu username"
                     class="border p-3 w-full rounded-lg @error('username') border-red-500 @enderror"
                     value="{{old('username')}}"
                     >
@@ -53,11 +53,11 @@
                     <label for="email" class="md-2 block uppercase text-gray-500 font-bold">
                         Email
                     </label>
-                    <input 
-                    type="email" 
-                    name="email" 
-                    id="email" 
-                    placeholder="Tu email" 
+                    <input
+                    type="email"
+                    name="email"
+                    id="email"
+                    placeholder="Tu email"
                     class="border p-3 w-full rounded-lg @error('email') border-red-500 @enderror"
                     value="{{old('email')}}"
                     >
@@ -72,11 +72,11 @@
                     <label for="password" class="md-2 block uppercase text-gray-500 font-bold">
                         Password
                     </label>
-                    <input 
-                    type="password" 
-                    name="password" 
-                    id="password" 
-                    placeholder="Tu password" 
+                    <input
+                    type="password"
+                    name="password"
+                    id="password"
+                    placeholder="Tu password"
                     class="border p-3 w-full rounded-lg @error('password') border-red-500 @enderror"
                     >
                     @error('password')
@@ -89,11 +89,11 @@
                     <label for="password_confirmation" class="md-2 block uppercase text-gray-500 font-bold">
                         Confirma tu password
                     </label>
-                    <input 
-                    type="password" 
-                    name="password_confirmation" 
-                    id="password_confirmation" 
-                    placeholder="Confirma tu password" 
+                    <input
+                    type="password"
+                    name="password_confirmation"
+                    id="password_confirmation"
+                    placeholder="Confirma tu password"
                     class="border p-3 w-full rounded-lg @error('password_confirmation') border-red-500 @enderror"
                     >
                     @error('password_confirmation')
@@ -103,9 +103,10 @@
                     @enderror
                 </div>
 
-                <input type="submit" 
-                value="Registrarse" 
-                class="bg-sky-600 hover:bg-sky-700 transition-colors cursor-pointer uppercase font-bold w-full p-3 text-white rounded-lg">
+                <input type="submit"
+                value="Registrarse"
+                class="bg-sky-600 hover:bg-sky-700 transition-colors cursor-pointer uppercase font-bold
+                w-full p-3 text-white rounded-lg">
             </form>
         </div>
 @endsection

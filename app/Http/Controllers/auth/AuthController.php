@@ -43,7 +43,7 @@ class AuthController extends Controller
             'password' => Hash::make($oRequest->password)
         ]);
 
-        return redirect()->route('posts.index');
+        return redirect()->route('posts.index',['user' => $oUsuario->username]);
     }
 
     public function login()
@@ -68,7 +68,7 @@ class AuthController extends Controller
             ->withInput();
         }
 
-        return redirect()->route('posts.index');
+        return redirect()->route('posts.index', ['user' => Auth::user()->username]);
     }
 
     public function logout(){

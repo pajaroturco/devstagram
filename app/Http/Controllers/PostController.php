@@ -20,4 +20,18 @@ class PostController extends Controller
             'user' => $user
         ]);
     }
+
+    public function create(){
+        return view('posts.create');
+    }
+
+    public function store(Request $request){
+        $data = $request->validate([
+            'body' => 'required'
+        ]);
+
+        $request->user()->posts()->create($data);
+
+        return redirect()->route('posts.index', ['user' => Auth::user()]);
+    }
 }
