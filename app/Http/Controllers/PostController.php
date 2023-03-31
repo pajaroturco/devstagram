@@ -17,7 +17,8 @@ class PostController extends Controller
     public function index(User $user){
 
         return view('dashboard', [
-            'user' => $user
+            'user' => $user,
+            'posts' => $user->posts()->paginate(env('PAGINACION',10))
         ]);
     }
 
@@ -27,7 +28,9 @@ class PostController extends Controller
 
     public function store(Request $request){
         $data = $request->validate([
-            'body' => 'required'
+            'titulo' => 'required',
+            'descripcion' => 'required',
+            'imagen' => 'required',
         ]);
 
         $request->user()->posts()->create($data);

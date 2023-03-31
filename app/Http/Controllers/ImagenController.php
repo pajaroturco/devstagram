@@ -17,6 +17,6 @@ class ImagenController extends Controller
 
         $oImagenServidor->save(public_path('uploads/' . $sNombre));
 
-        return response()->json($sNombre);
+        return response()->json(['imagen' => $sNombre]);
     }
 }
