@@ -27,5 +27,6 @@ Route::post('/logout', [App\Http\Controllers\auth\AuthController::class, 'logout
 Route::get('/{user:username}', [App\Http\Controllers\PostController::class, 'index'])->name('posts.index');
 Route::get('/posts/create', [App\Http\Controllers\PostController::class, 'create'])->name('posts.create');
 Route::post('/posts', [App\Http\Controllers\PostController::class, 'store'])->name('posts.store');
+Route::get('/{user:username}/posts/{post}', [App\Http\Controllers\PostController::class, 'show'])->name('posts.show');
 
 Route::post('/imagen', [App\Http\Controllers\ImagenController::class, 'store'])->name('imagen.store');

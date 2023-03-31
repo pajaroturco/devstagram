@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -36,5 +37,11 @@ class PostController extends Controller
         $request->user()->posts()->create($data);
 
         return redirect()->route('posts.index', ['user' => Auth::user()]);
+    }
+
+    public function show(User $user, Post $post){
+        return view('posts.show', [
+            'post' => $post
+        ]);
     }
 }
