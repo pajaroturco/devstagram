@@ -51,6 +51,7 @@ services:
         image: nginx:latest
         volumes:
         - ./nginx/conf.d:/etc/nginx/conf.d
+        - ./nginx/nginx.conf:/etc/nginx/nginx.conf
         ports:
         - '${APP_PORT:-80}:80'
         depends_on:

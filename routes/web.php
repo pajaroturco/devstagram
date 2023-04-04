@@ -28,5 +28,11 @@ Route::get('/{user:username}', [App\Http\Controllers\PostController::class, 'ind
 Route::get('/posts/create', [App\Http\Controllers\PostController::class, 'create'])->name('posts.create');
 Route::post('/posts', [App\Http\Controllers\PostController::class, 'store'])->name('posts.store');
 Route::get('/{user:username}/posts/{post}', [App\Http\Controllers\PostController::class, 'show'])->name('posts.show');
+Route::delete('/posts/{post}', [App\Http\Controllers\PostController::class, 'delete'])->name('posts.delete');
+
+Route::post('/{user:username}/posts/{post}/comentarios', [App\Http\Controllers\ComentarioController::class, 'store'])->name('comentarios.store');
 
 Route::post('/imagen', [App\Http\Controllers\ImagenController::class, 'store'])->name('imagen.store');
+
+Route::post('/posts/{post}/likes', [App\Http\Controllers\LikeController::class, 'store'])->name('posts.likes.store');
+Route::delete('/posts/{post}/likes', [App\Http\Controllers\LikeController::class, 'delete'])->name('posts.likes.delete');

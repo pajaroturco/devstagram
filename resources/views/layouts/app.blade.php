@@ -31,7 +31,7 @@
                     </a>
                     <a class="font-bold uppercase text-gray-600 text-sm"
                        href="{{route('posts.index',auth()->user()->username)}}">
-                        Perfil
+                        Hola, {{auth()->user()->username}}
                     </a>
                     <form action="{{route('logout')}}" method="POST">
                         @csrf

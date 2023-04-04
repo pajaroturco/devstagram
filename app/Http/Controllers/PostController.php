@@ -12,7 +12,7 @@ class PostController extends Controller
     //
 
     public function __construct(){
-        $this->middleware('auth');
+        $this->middleware('auth')->except(['index', 'show']);
     }
 
     public function index(User $user){
@@ -32,7 +32,7 @@ class PostController extends Controller
             'titulo' => 'required',
             'descripcion' => 'required',
             'imagen' => 'required',
-        ]);
+    ]);
 
         $request->user()->posts()->create($data);
 
@@ -41,7 +41,24 @@ class PostController extends Controller
 
     public function show(User $user, Post $post){
         return view('posts.show', [
-            'post' => $post
+            'post' => $post,
+            'user' => $user
         ]);
+    }
+
+    public function delete(Post $post){
+
+        $this->authorize('delete', $post);
+
+        $post->delete();
+
+        // eliminar images
+        $imagenPath = public_path('uploads/'.$post->imagen);
+
+        if(file_exists($imagenPath)){
+            unlink($imagenPath);
+        }
+
+        return redirect()->route('posts.index', ['user' => Auth::user()]);
     }
 }
