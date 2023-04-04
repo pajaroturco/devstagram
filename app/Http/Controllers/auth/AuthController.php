@@ -26,7 +26,7 @@ class AuthController extends Controller
 
         $oValidator = Validator::make($oRequest->all(), [
             'nombre' => 'required|min:5',
-            'username' => 'required|min:5|unique:users',
+            'username' => 'required|min:5|mqx:20|unique:users',
             'email' => 'required|email|unique:users',
             'password' => 'required|min:8',
             'password_confirmation' => 'required|same:password'

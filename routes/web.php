@@ -24,12 +24,15 @@ Route::get('/login', [App\Http\Controllers\auth\AuthController::class, 'login'])
 Route::post('/login', [App\Http\Controllers\auth\AuthController::class, 'loginStore'])->name('login.store');
 Route::post('/logout', [App\Http\Controllers\auth\AuthController::class, 'logout'])->name('logout');
 
-Route::get('/{user:username}', [App\Http\Controllers\PostController::class, 'index'])->name('posts.index');
+Route::get('/edit', [App\Http\Controllers\PerfilController::class, 'edit'])->name('perfil.edit');
+Route::post('/edit', [App\Http\Controllers\PerfilController::class, 'update'])->name('perfil.update');
+
 Route::get('/posts/create', [App\Http\Controllers\PostController::class, 'create'])->name('posts.create');
 Route::post('/posts', [App\Http\Controllers\PostController::class, 'store'])->name('posts.store');
 Route::get('/{user:username}/posts/{post}', [App\Http\Controllers\PostController::class, 'show'])->name('posts.show');
 Route::delete('/posts/{post}', [App\Http\Controllers\PostController::class, 'delete'])->name('posts.delete');
 
+Route::get('/{user:username}', [App\Http\Controllers\PostController::class, 'index'])->name('posts.index');
 Route::post('/{user:username}/posts/{post}/comentarios', [App\Http\Controllers\ComentarioController::class, 'store'])->name('comentarios.store');
 
 Route::post('/imagen', [App\Http\Controllers\ImagenController::class, 'store'])->name('imagen.store');
